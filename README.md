@@ -1,2 +1,2 @@
 # UnityPracticeDownStair
-Practice
+Practice only
