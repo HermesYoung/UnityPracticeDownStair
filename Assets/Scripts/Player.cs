@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private int health = 10;
-    [SerializeField] private GameObject replayButton;
+    [SerializeField] private GameObject[] buttons;
+    [SerializeField] private GameObject startButton;
     [SerializeField] private Text currentHealth;
     [SerializeField] private Text score;
     private int _score = 0;
@@ -59,7 +60,10 @@ public class Player : MonoBehaviour
     private void Finish()
     {
         Time.timeScale = 0;
-        replayButton.SetActive(true);
+        foreach (var button in buttons)
+        {
+            button.SetActive(true);
+        }
     }
 
     private void ModifyHealth(int hp)
@@ -78,5 +82,21 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void Start()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void OnStartButtonClick()
+    {
+        Time.timeScale = 1f;
+        startButton.SetActive(false);
+    }
+
+    public void OnExitButtonClick()
+    {
+        Application.Quit();
     }
 }
